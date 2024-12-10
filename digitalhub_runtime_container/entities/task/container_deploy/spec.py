@@ -23,6 +23,7 @@ class TaskSpecContainerDeploy(TaskSpecFunction):
         runtime_class: str | None = None,
         priority_class: str | None = None,
         replicas: int | None = None,
+        run_as_user: int | None = None,
         fs_group: int | None = None,
         **kwargs,
     ) -> None:
@@ -41,6 +42,7 @@ class TaskSpecContainerDeploy(TaskSpecFunction):
             **kwargs,
         )
         self.replicas = replicas
+        self.run_as_user = run_as_user
         self.fs_group = fs_group
 
 
@@ -51,6 +53,9 @@ class TaskValidatorContainerDeploy(TaskValidatorFunction):
 
     replicas: int = Field(default=None, ge=1)
     """Number of replicas."""
+
+    run_as_user: int = Field(default=None, ge=0)
+    """RunAsUser."""
 
     fs_group: int = Field(default=None, ge=1)
     """FSGroup."""

@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 from digitalhub.entities.task._base.spec import TaskSpecFunction, TaskValidatorFunction
+from pydantic import Field
 
 
 class TaskSpecContainerBuild(TaskSpecFunction):
@@ -22,6 +23,7 @@ class TaskSpecContainerBuild(TaskSpecFunction):
         runtime_class: str | None = None,
         priority_class: str | None = None,
         instructions: list | None = None,
+        run_as_user: int | None = None,
         **kwargs,
     ) -> None:
         super().__init__(
@@ -39,6 +41,7 @@ class TaskSpecContainerBuild(TaskSpecFunction):
             **kwargs,
         )
         self.instructions = instructions
+        self.run_as_user = run_as_user
 
 
 class TaskValidatorContainerBuild(TaskValidatorFunction):
@@ -48,3 +51,6 @@ class TaskValidatorContainerBuild(TaskValidatorFunction):
 
     instructions: list[str] = None
     """Build instructions."""
+
+    run_as_user: int = Field(default=None, ge=0)
+    """RunAsUser."""
