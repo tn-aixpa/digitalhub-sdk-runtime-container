@@ -35,6 +35,7 @@ class RunSpecContainerRun(RunSpec):
         service_ports: list | None = None,
         service_type: str | None = None,
         instructions: dict | None = None,
+        run_as_user: int | None = None,
         fs_group: int | None = None,
         **kwargs,
     ) -> None:
@@ -66,6 +67,7 @@ class RunSpecContainerRun(RunSpec):
         self.service_ports = service_ports
         self.service_type = service_type
         self.instructions = instructions
+        self.run_as_user = run_as_user
         self.fs_group = fs_group
 
 
@@ -96,4 +98,5 @@ class RunValidatorContainerRun(RunValidator):
     instructions: list[str] = None
 
     # Shared task
+    run_as_user: int = None
     fs_group: int = None
