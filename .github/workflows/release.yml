@@ -92,7 +92,7 @@ jobs:
           BETA: ${{ inputs.release-type == 'upgrade-beta' || startsWith(inputs.release-type, 'new-beta')}}
         with:
           name: ${{ env.VERSION }}
-          tag_name: v-${{ env.VERSION }}
+          tag_name: ${{ env.VERSION }}
           generate_release_notes: true
           draft: false
           prerelease: ${{ env.BETA }}
