@@ -89,7 +89,7 @@ def _check_params(
         source["lang"] = lang
 
     if code_src is None and code is None and base64 is None:
-        raise EntityError("Source must be provided.")
+        return source
 
     if code_src is not None:
         source["source"] = code_src
@@ -117,6 +117,9 @@ def source_post_check(exec: FunctionContainer) -> FunctionContainer:
     FunctionContainer
         Updated executable.
     """
+    if exec.spec.source is None:
+        return exec
+
     code_src = exec.spec.source.get("source", None)
     base64 = exec.spec.source.get("base64", None)
     if code_src is None or base64 is not None:
