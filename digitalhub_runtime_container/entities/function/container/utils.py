@@ -5,7 +5,7 @@ from pathlib import Path
 
 from digitalhub.stores.api import get_store
 from digitalhub.utils.exceptions import EntityError
-from digitalhub.utils.file_utils import eval_text_type, eval_zip_type
+from digitalhub.utils.file_utils import eval_text_type, eval_zip_type, eval_py_type
 from digitalhub.utils.generic_utils import encode_source, encode_string
 from digitalhub.utils.s3_utils import get_s3_bucket
 from digitalhub.utils.uri_utils import has_local_scheme
@@ -128,7 +128,7 @@ def source_post_check(exec: FunctionContainer) -> FunctionContainer:
     # Check local source
     if has_local_scheme(code_src) and Path(code_src).is_file():
         # Check text
-        if eval_text_type(code_src):
+        if eval_text_type(code_src) or eval_py_type(code_src):
             exec.spec.source["base64"] = encode_source(code_src)
 
         # Check zip
