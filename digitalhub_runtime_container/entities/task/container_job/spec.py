@@ -22,7 +22,6 @@ class TaskSpecContainerJob(TaskSpecFunction):
         profile: str | None = None,
         runtime_class: str | None = None,
         priority_class: str | None = None,
-        backoff_limit: int | None = None,
         schedule: str | None = None,
         run_as_user: int | None = None,
         fs_group: int | None = None,
@@ -42,7 +41,7 @@ class TaskSpecContainerJob(TaskSpecFunction):
             priority_class,
             **kwargs,
         )
-        self.backoff_limit = backoff_limit
+
         self.schedule = schedule
         self.run_as_user = run_as_user
         self.fs_group = fs_group
@@ -52,9 +51,6 @@ class TaskValidatorContainerJob(TaskValidatorFunction):
     """
     TaskValidatorContainerJob validator.
     """
-
-    backoff_limit: int = Field(default=None, ge=0)
-    """Backoff limit."""
 
     schedule: str = None
     """Schedule."""

@@ -29,7 +29,6 @@ class RunSpecContainerRun(RunSpec):
         base_image: str | None = None,
         command: str | None = None,
         args: list[str] | None = None,
-        backoff_limit: int | None = None,
         schedule: str | None = None,
         replicas: int | None = None,
         service_ports: list | None = None,
@@ -61,7 +60,7 @@ class RunSpecContainerRun(RunSpec):
         self.base_image = base_image
         self.command = command
         self.args = args
-        self.backoff_limit = backoff_limit
+
         self.schedule = schedule
         self.replicas = replicas
         self.service_ports = service_ports
@@ -84,7 +83,6 @@ class RunValidatorContainerRun(RunValidator):
     args: list[str] = None
 
     # Task job
-    backoff_limit: int = None
     schedule: str = None
 
     # Task deploy
