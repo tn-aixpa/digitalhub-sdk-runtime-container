@@ -27,6 +27,7 @@ class TaskSpecContainerServe(TaskSpecFunction):
         service_ports: list | None = None,
         service_type: str | None = None,
         run_as_user: int | None = None,
+        run_as_group: int | None = None,
         fs_group: int | None = None,
         **kwargs,
     ) -> None:
@@ -48,6 +49,7 @@ class TaskSpecContainerServe(TaskSpecFunction):
         self.service_ports = service_ports
         self.service_type = service_type
         self.run_as_user = run_as_user
+        self.run_as_group = run_as_group
         self.fs_group = fs_group
 
 
@@ -67,6 +69,9 @@ class TaskValidatorContainerServe(TaskValidatorFunction):
 
     run_as_user: int = Field(default=None, ge=0)
     """RunAsUser."""
+
+    run_as_group: int = Field(default=None, ge=0)
+    """RunAsGroup."""
 
     fs_group: int = Field(default=None, ge=1)
     """FSGroup."""

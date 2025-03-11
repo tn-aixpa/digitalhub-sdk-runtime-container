@@ -14,7 +14,7 @@
     "project": "demo-etl",
     "spec": {
       "image": "debian:1.22.04",
-      "fsGroup": 1000,
+      "fs_group": 1000,
       "replicas": 2,
       "profile": "1xa100",
       "source": {
@@ -458,7 +458,7 @@
               "restartPolicy": "Always",
               "schedulerName": "default-scheduler",
               "securityContext": {
-                "fsGroup": 1000,
+                "fs_group": 1000,
                 "runAsNonRoot": true
               },
               "serviceAccount": "default",
@@ -1079,7 +1079,7 @@
                 "restartPolicy": "Always",
                 "schedulerName": "default-scheduler",
                 "securityContext": {
-                  "fsGroup": 1000,
+                  "fs_group": 1000,
                   "runAsNonRoot": true
                 },
                 "terminationGracePeriodSeconds": 30,

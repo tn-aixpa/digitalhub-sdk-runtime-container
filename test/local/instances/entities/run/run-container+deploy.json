@@ -14,7 +14,7 @@
     "project": "demo-etl",
     "spec": {
       "image": "debian:1.22.04",
-      "fsGroup": 1000,
+      "fs_group": 1000,
       "replicas": 2,
       "profile": "1xa100",
       "volumes": [
