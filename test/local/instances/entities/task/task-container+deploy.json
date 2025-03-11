@@ -18,6 +18,7 @@
     "priority_class": "test",
     "runtime_class": "test",
     "run_as_user": 1000,
+    "run_as_group": 1000,
     "tolerations": [],
     "affinity": {},
     "profile": "1xa100",
