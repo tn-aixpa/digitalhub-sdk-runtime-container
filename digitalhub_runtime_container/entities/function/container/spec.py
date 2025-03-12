@@ -15,7 +15,7 @@ class FunctionSpecContainer(FunctionSpec):
         self,
         image: str | None = None,
         base_image: str | None = None,
-        pull_policy: str | None = None,
+        image_pull_policy: str | None = None,
         command: str | None = None,
         args: list[str] | None = None,
         source: dict | None = None,
@@ -24,7 +24,7 @@ class FunctionSpecContainer(FunctionSpec):
 
         self.image = image
         self.base_image = base_image
-        self.pull_policy = pull_policy
+        self.image_pull_policy = image_pull_policy
         self.command = command
         self.args = args
         self.source = source
