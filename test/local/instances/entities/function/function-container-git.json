@@ -15,6 +15,7 @@
     "name": "func1c",
     "project": "demo-etl",
     "spec": {
+      "image_pull_policy": "Always",
       "args": [
         "main.py"
       ],

@@ -27,6 +27,7 @@ class RunSpecContainerRun(RunSpec):
         source: dict | None = None,
         image: str | None = None,
         base_image: str | None = None,
+        image_pull_policy: str | None = None,
         command: str | None = None,
         args: list[str] | None = None,
         schedule: str | None = None,
@@ -58,6 +59,7 @@ class RunSpecContainerRun(RunSpec):
         self.source = source
         self.image = image
         self.base_image = base_image
+        self.image_pull_policy = image_pull_policy
         self.command = command
         self.args = args
 
@@ -79,6 +81,7 @@ class RunValidatorContainerRun(RunValidator):
     source: dict = None
     image: str = None
     base_image: str = None
+    image_pull_policy: str = None
     command: str = None
     args: list[str] = None
 

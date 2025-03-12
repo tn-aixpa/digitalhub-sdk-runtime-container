@@ -1,6 +1,8 @@
 from __future__ import annotations
 
 from digitalhub.entities.function._base.spec import FunctionSpec, FunctionValidator
+from digitalhub.entities.task._base.models import CorePullPolicy
+from pydantic import Field
 
 from digitalhub_runtime_container.entities.function.container.models import SourceValidator
 
@@ -14,6 +16,7 @@ class FunctionSpecContainer(FunctionSpec):
         self,
         image: str | None = None,
         base_image: str | None = None,
+        pull_policy: str | None = None,
         command: str | None = None,
         args: list[str] | None = None,
         source: dict | None = None,
@@ -22,6 +25,7 @@ class FunctionSpecContainer(FunctionSpec):
 
         self.image = image
         self.base_image = base_image
+        self.pull_policy = pull_policy
         self.command = command
         self.args = args
         self.source = source
@@ -37,6 +41,9 @@ class FunctionValidatorContainer(FunctionValidator):
 
     base_image: str = None
     """Function's base container image."""
+
+    image_pull_policy: CorePullPolicy = None
+    """Function's container image pull policy."""
 
     command: str = None
     """Command to run inside the container."""
