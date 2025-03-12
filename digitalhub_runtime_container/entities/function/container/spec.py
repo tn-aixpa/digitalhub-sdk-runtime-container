@@ -2,7 +2,6 @@ from __future__ import annotations
 
 from digitalhub.entities.function._base.spec import FunctionSpec, FunctionValidator
 from digitalhub.entities.task._base.models import CorePullPolicy
-from pydantic import Field
 
 from digitalhub_runtime_container.entities.function.container.models import SourceValidator
 
