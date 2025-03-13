@@ -36,6 +36,7 @@ class RunSpecContainerRun(RunSpec):
         service_type: str | None = None,
         instructions: dict | None = None,
         run_as_user: int | None = None,
+        run_as_group: int | None = None,
         fs_group: int | None = None,
         **kwargs,
     ) -> None:
@@ -56,12 +57,13 @@ class RunSpecContainerRun(RunSpec):
             priority_class,
             **kwargs,
         )
+        self.args = args
+
         self.source = source
         self.image = image
         self.base_image = base_image
         self.image_pull_policy = image_pull_policy
         self.command = command
-        self.args = args
 
         self.schedule = schedule
         self.replicas = replicas
@@ -69,6 +71,7 @@ class RunSpecContainerRun(RunSpec):
         self.service_type = service_type
         self.instructions = instructions
         self.run_as_user = run_as_user
+        self.run_as_group = run_as_group
         self.fs_group = fs_group
 
 
@@ -77,13 +80,16 @@ class RunValidatorContainerRun(RunValidator):
     RunValidatorContainerRun validator.
     """
 
+    # Run parameters
+    args: list[str] = None
+    """Arguments to pass to the entrypoint."""
+
     # Function parameters
     source: dict = None
     image: str = None
     base_image: str = None
     image_pull_policy: str = None
     command: str = None
-    args: list[str] = None
 
     # Task job
     schedule: str = None
@@ -100,4 +106,5 @@ class RunValidatorContainerRun(RunValidator):
 
     # Shared task
     run_as_user: int = None
+    run_as_group: int = None
     fs_group: int = None

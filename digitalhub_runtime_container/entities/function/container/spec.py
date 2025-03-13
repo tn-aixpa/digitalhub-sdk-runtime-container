@@ -26,7 +26,6 @@ class FunctionSpecContainer(FunctionSpec):
         self.base_image = base_image
         self.image_pull_policy = image_pull_policy
         self.command = command
-        self.args = args
         self.source = source
 
 
@@ -46,9 +45,6 @@ class FunctionValidatorContainer(FunctionValidator):
 
     command: str = None
     """Command to run inside the container."""
-
-    args: list[str] = None
-    """Arguments to pass to the entrypoint."""
 
     source: SourceValidator = None
     """Source code params."""
