@@ -4,11 +4,13 @@ import typing
 from pathlib import Path
 
 from digitalhub.stores.data.api import get_store
-from digitalhub.stores.data.s3.utils import get_s3_bucket_from_env
+from digitalhub.stores.data.utils import get_default_store
 from digitalhub.utils.exceptions import EntityError
-from digitalhub.utils.file_utils import eval_py_type, eval_text_type, eval_zip_type
+from digitalhub.utils.file_utils import eval_zip_type
 from digitalhub.utils.generic_utils import encode_source, encode_string
 from digitalhub.utils.uri_utils import has_local_scheme
+
+from digitalhub_runtime_container.utils.file_utils import eval_readable_text
 
 if typing.TYPE_CHECKING:
     from digitalhub_runtime_container.entities.function.container.entity import FunctionContainer
@@ -128,13 +130,13 @@ def source_post_check(exec: FunctionContainer) -> FunctionContainer:
     # Check local source
     if has_local_scheme(code_src) and Path(code_src).is_file():
         # Check text
-        if eval_text_type(code_src) or eval_py_type(code_src):
+        if eval_readable_text(code_src):
             exec.spec.source["base64"] = encode_source(code_src)
 
         # Check zip
         elif eval_zip_type(code_src):
             filename = Path(code_src).name
-            dst = f"zip+s3://{get_s3_bucket_from_env()}/{exec.project}/{exec.ENTITY_TYPE}/{exec.name}/{exec.id}/{filename}"
+            dst = f"zip+{get_default_store(exec.project)}/{exec.project}/{exec.ENTITY_TYPE}/{exec.name}/{exec.id}/{filename}"
             get_store(exec.project, dst).upload(code_src, dst)
             exec.spec.source["source"] = dst
             if exec.spec.source.get("handler") is None:
