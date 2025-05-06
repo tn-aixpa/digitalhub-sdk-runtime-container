@@ -22,7 +22,6 @@ class TaskSpecContainerJob(TaskSpecFunction):
         profile: str | None = None,
         runtime_class: str | None = None,
         priority_class: str | None = None,
-        schedule: str | None = None,
         run_as_user: int | None = None,
         run_as_group: int | None = None,
         fs_group: int | None = None,
@@ -43,7 +42,6 @@ class TaskSpecContainerJob(TaskSpecFunction):
             **kwargs,
         )
 
-        self.schedule = schedule
         self.run_as_user = run_as_user
         self.run_as_group = run_as_group
         self.fs_group = fs_group
@@ -53,9 +51,6 @@ class TaskValidatorContainerJob(TaskValidatorFunction):
     """
     TaskValidatorContainerJob validator.
     """
-
-    schedule: str = None
-    """Schedule."""
 
     run_as_user: int = Field(default=None, ge=0)
     """RunAsUser."""

@@ -30,7 +30,6 @@ class RunSpecContainerRun(RunSpec):
         image_pull_policy: str | None = None,
         command: str | None = None,
         args: list[str] | None = None,
-        schedule: str | None = None,
         replicas: int | None = None,
         service_ports: list | None = None,
         service_type: str | None = None,
@@ -65,7 +64,6 @@ class RunSpecContainerRun(RunSpec):
         self.image_pull_policy = image_pull_policy
         self.command = command
 
-        self.schedule = schedule
         self.replicas = replicas
         self.service_ports = service_ports
         self.service_type = service_type
@@ -90,9 +88,6 @@ class RunValidatorContainerRun(RunValidator):
     base_image: str = None
     image_pull_policy: str = None
     command: str = None
-
-    # Task job
-    schedule: str = None
 
     # Task deploy
     replicas: int = None
