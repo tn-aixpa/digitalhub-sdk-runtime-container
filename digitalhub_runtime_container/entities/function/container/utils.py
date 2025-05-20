@@ -7,7 +7,7 @@ from digitalhub.stores.data.api import get_store
 from digitalhub.stores.data.utils import get_default_store
 from digitalhub.utils.exceptions import EntityError
 from digitalhub.utils.file_utils import eval_zip_type
-from digitalhub.utils.generic_utils import carriage_return_warn, encode_source, encode_string
+from digitalhub.utils.generic_utils import encode_string, read_source
 from digitalhub.utils.uri_utils import has_local_scheme
 
 from digitalhub_runtime_container.utils.file_utils import eval_readable_text
@@ -131,9 +131,7 @@ def source_post_check(exec: FunctionContainer) -> FunctionContainer:
     if has_local_scheme(code_src) and Path(code_src).is_file():
         # Check text
         if eval_readable_text(code_src):
-            encoded_source = encode_source(code_src)
-            carriage_return_warn(encoded_source)
-            exec.spec.source["base64"] = encoded_source
+            exec.spec.source["base64"] = read_source(code_src)
 
         # Check zip
         elif eval_zip_type(code_src):
