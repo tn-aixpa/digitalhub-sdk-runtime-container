@@ -63,7 +63,7 @@ class TaskValidatorContainerServe(TaskValidatorFunction):
     replicas: int = Field(default=None, ge=0)
     """Number of replicas."""
 
-    service_type: CoreServiceType = Field(default=CoreServiceType.NODE_PORT.value)
+    service_type: CoreServiceType = None
     """Service type."""
 
     service_ports: list[CorePort] = None
