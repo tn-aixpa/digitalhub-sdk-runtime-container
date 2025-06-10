@@ -1,3 +1,4 @@
+# SPDX-License-Identifier: Apache-2.0
 from digitalhub_runtime_container.entities._commons.enums import EntityKinds
 from digitalhub_runtime_container.entities.function.container.builder import FunctionContainerBuilder
 from digitalhub_runtime_container.entities.run.container_run.builder import RunContainerRunBuilder
