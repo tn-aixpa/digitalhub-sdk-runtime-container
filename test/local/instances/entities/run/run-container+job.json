@@ -16,7 +16,7 @@
       "args": [
         "main.py"
       ],
-      "schedule": "5 4 * * *",
+
       "image": "debian:1.22.04",
       "task": "container+job://demo-etl/bbc4c820-6321-4ea8-b57b-85c472cfde09",
       "base_image": "debian:1.22.04",
@@ -447,7 +447,7 @@
                 }
               }
             },
-            "schedule": "5 4 * * *",
+
             "successfulJobsHistoryLimit": 3,
             "suspend": false
           }
