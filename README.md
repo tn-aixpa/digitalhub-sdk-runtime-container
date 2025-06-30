@@ -1,9 +1,9 @@
 # DigitalHub SDK Runtime Container
 
-[![license](https://img.shields.io/badge/license-Apache%202.0-blue)](https://github.com/scc-digitalhub/digitalhub-sdk-runtime-container/LICENSE) ![GitHub Release](https://img.shields.io/github/v/release/scc-digitalhub/digitalhub-sdk-runtime-container)
+[![license](https://img.shields.io/badge/license-Apache%202.0-blue)](https://github.com/tn-aixpa/digitalhub-sdk-runtime-container/LICENSE) ![GitHub Release](https://img.shields.io/github/v/release/tn-aixpa/digitalhub-sdk-runtime-container)
 ![Status](https://img.shields.io/badge/status-stable-gold)
 
-The Digitalhub SDK Runtime Container is a runtime extension for the [Digitalhub SDK](https://github.com/scc-digitalhub/digitalhub-sdk). It enables you to define remote function that runs in container or deploy container as a service in the Digitalhub platform.
+The Digitalhub SDK Runtime Container is a runtime extension for the [Digitalhub SDK](https://github.com/tn-aixpa/digitalhub-sdk). It enables you to define remote function that runs in container or deploy container as a service in the Digitalhub platform.
 
 Explore the full documentation at the [link](https://scc-digitalhub.github.io/sdk-docs/runtimes/container/).
 
