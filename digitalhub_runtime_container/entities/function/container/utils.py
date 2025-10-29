@@ -7,8 +7,7 @@ from __future__ import annotations
 import typing
 from pathlib import Path
 
-from digitalhub.stores.data.api import get_store
-from digitalhub.stores.data.utils import get_default_store
+from digitalhub.stores.data.api import get_default_store, get_store
 from digitalhub.utils.exceptions import EntityError
 from digitalhub.utils.file_utils import eval_zip_type
 from digitalhub.utils.generic_utils import encode_string, read_source
@@ -132,7 +131,10 @@ def source_post_check(exec: FunctionContainer) -> FunctionContainer:
         return exec
 
     # Check local source
-    if has_local_scheme(code_src) and Path(code_src).is_file():
+    if has_local_scheme(code_src):
+        if not Path(code_src).is_file():
+            raise EntityError(f"Source file {code_src} does not exist.")
+
         # Check text
         if eval_readable_text(code_src):
             exec.spec.source["base64"] = read_source(code_src)
@@ -141,7 +143,7 @@ def source_post_check(exec: FunctionContainer) -> FunctionContainer:
         elif eval_zip_type(code_src):
             filename = Path(code_src).name
             dst = f"zip+{get_default_store(exec.project)}/{exec.project}/{exec.ENTITY_TYPE}/{exec.name}/{exec.id}/{filename}"
-            get_store(exec.project, dst).upload(code_src, dst)
+            get_store(dst).upload(code_src, dst)
             exec.spec.source["source"] = dst
             if exec.spec.source.get("handler") is None:
                 raise EntityError("Handler must be provided.")
